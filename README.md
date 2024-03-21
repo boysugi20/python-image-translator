@@ -30,6 +30,12 @@ This project utilizes optical character recognition (OCR) and translation to tra
     ```
 -   Adjustments to text languages, recognition thresholds, translation services, or image processing parameters can be made within the script.
 
+## Examples
+
+![image-1](https://github.com/boysugi20/python-image-translator/assets/53815726/cc2a52b3-2627-4f08-a428-c0dba4341bda)
+![image-1-translated](https://github.com/boysugi20/python-image-translator/assets/53815726/3ecafe2e-df19-4ca2-aeff-b05cc89394db)
+
+
 ## Acknowledgments
 
 -   [EasyOCR](https://github.com/JaidedAI/EasyOCR) - For OCR processing.
