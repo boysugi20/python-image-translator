@@ -17,7 +17,7 @@ This project utilizes optical character recognition (OCR) and translation to tra
 ## Usage
 
 1. Place your input images in the `input` folder.
-2. Run the script `image_translator.py`.
+2. Run the script `main.py`.
 3. Translated images will be saved in the `output` folder.
 
 ## Notes
