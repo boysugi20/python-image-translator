@@ -1,0 +1,22 @@
+# Image Translator Requirements
+# Python 3.8+
+
+# OCR - 文字识别
+easyocr>=1.7.0
+
+# Translation - 翻译服务
+deep-translator>=1.11.4
+
+# Image Processing - 图像处理
+Pillow>=10.0.0
+
+# Additional dependencies installed with EasyOCR:
+# - torch (PyTorch)
+# - torchvision
+# - opencv-python-headless
+# - scipy
+# - scikit-image
+# - python-bidi
+# - pyyaml
+
+# Note: tkinter comes with Python standard library (no need to install)

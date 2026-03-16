@@ -1,43 +1,247 @@
-# Image Translator
+# 图像翻译器 (Image Translator GUI)
 
-This project utilizes optical character recognition (OCR) and translation to translate text within images from one language to another. It performs the following steps:
+一个功能强大的图像文字翻译工具，支持自动OCR识别、交互式文本框选择、样式自定义和多语言翻译。
 
-1. **OCR Processing:** The project extracts text and its bounding boxes from input images using the EasyOCR library.
-2. **Translation:** It translates the extracted text using the Google Translator API.
-3. **Text Replacement:** The translated text is then overlaid onto the image, replacing the original text while maintaining its position and style.
-4. **Output:** Finally, the modified image with translated text is saved to an output folder.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-## Setup
+## ✨ 主要功能
 
-### Installation
+### 🎯 核心功能
+- **OCR文字识别** - 自动识别图片中的文字（支持中文、英文等多种语言）
+- **多语言翻译** - 支持9种语言互译（英文、简体中文、繁体中文、日文、韩文、法文、德文、西班牙文、俄文）
+- **交互式选择** - 可视化选择需要翻译的文本框
+- **手动框选** - 支持手动框选文字区域进行识别
+- **样式自定义** - 每个文本框可独立设置字体大小、字体类型、文字颜色
 
-1. Clone this repository to your local machine.
-2. Install the required Python dependencies using `pip install pipenv && pipenv install`.
+### 🖼️ 图形界面特色
+- **醒目的文本框标注** - 荧光绿/红色边框 + 彩色序号背景
+- **双向联动** - 图片点击与列表自动同步
+- **实时编辑** - 译文、字体、颜色实时调整
+- **批量操作** - 全选/全不选/反选快捷按钮
+- **自动保存** - 编辑后自动保存，无需手动点击
 
-## Usage
+### 📦 两种使用模式
+1. **GUI模式** - 图形界面，适合单张图片精细处理
+2. **CLI模式** - 命令行批量处理，适合批量翻译整个文件夹
 
-1. Place your input images in the `input` folder.
-2. Run the script `main.py`.
-3. Translated images will be saved in the `output` folder.
+## 📸 功能展示
 
-## Notes
+### 主界面
+- **左侧**：图片预览区，带醒目的文本框标注和序号
+- **右侧**：设置面板、文本框列表、样式编辑器、运行日志
 
--   Supported languages for OCR can be seen [here](https://www.jaided.ai/easyocr/)
--   Supported languages for Google Translate can be obtained using the following code:
-    ```python
-    from deep_translator.constants import GOOGLE_LANGUAGES_TO_CODES
-    print(GOOGLE_LANGUAGES_TO_CODES)
-    ```
--   Adjustments to text languages, recognition thresholds, translation services, or image processing parameters can be made within the script.
+### 核心特性
+- ✅ 自动OCR识别文字
+- ✅ 手动框选补充识别
+- ✅ 可视化选择翻译区域
+- ✅ 每个文本框独立样式设置
+- ✅ 字体大小：自动或10-300号
+- ✅ 7种字体类型选择
+- ✅ 9种预设颜色+自定义颜色
+- ✅ 图片与列表实时联动
 
-## Examples
+## 🚀 快速开始
 
-![image-1](https://github.com/boysugi20/python-image-translator/assets/53815726/cc2a52b3-2627-4f08-a428-c0dba4341bda)
-![image-1-translated](https://github.com/boysugi20/python-image-translator/assets/53815726/3ecafe2e-df19-4ca2-aeff-b05cc89394db)
+### 安装依赖
 
+```bash
+pip install -r requirements.txt
+```
 
-## Acknowledgments
+### 运行程序
 
--   [EasyOCR](https://github.com/JaidedAI/EasyOCR) - For OCR processing.
--   [Google Translator](https://pypi.org/project/deep-translator/) - For text translation.
--   [Pillow (PIL Fork)](https://python-pillow.org/) - For image manipulation.
+#### 方式1：图形界面（推荐）
+```bash
+python image_translator_gui.py
+```
+
+#### 方式2：命令行批量处理
+```bash
+python image_translator_optimized.py
+```
+
+## 📖 使用指南
+
+### GUI模式使用步骤
+
+#### 基础流程
+1. **选择图片** - 点击"选择图片"按钮
+2. **识别文本** - 点击"识别文本"进行OCR识别
+3. **选择文本框** - 在图片或列表中选择要翻译的文本框
+   - 图片上点击：切换选择状态（绿色=选中，红色=未选）
+   - 列表中点击☑：切换选择状态
+   - 批量操作：全选/全不选/反选
+4. **设置语言** - 选择源语言和目标语言（如：英文 → 简体中文）
+5. **翻译文本** - 点击"翻译选中的文本"
+6. **编辑调整**（可选）
+   - 点击列表中的文本框进入编辑模式
+   - 修改译文、调整字体大小、选择字体类型、设置颜色
+7. **保存图片** - 点击"应用翻译并保存"
+
+#### 手动框选模式
+如果自动识别遗漏了某些文字：
+1. 勾选工具栏的 **"手动框选模式"**
+2. 鼠标变为十字准星
+3. 在图片上**拖拽框选**要识别的文字区域
+4. 松开鼠标后自动识别并添加到列表
+5. 可继续框选其他区域
+6. 取消勾选退出手动框选模式
+
+### 样式自定义
+
+选中文本框后，可在下方编辑区调整：
+
+#### 字体大小
+- **自动** - 自动适应文本框大小（推荐）
+- **10-300** - 手动指定字体大小（支持超大字体）
+
+#### 字体类型
+- 默认 / 微软雅黑 / 黑体 / 宋体 / 楷体 / Arial / Times New Roman
+
+#### 文字颜色
+- **自动** - 根据背景自动选择黑/白
+- **预设颜色** - 黑、白、红、绿、蓝、黄、橙、紫
+- **自定义颜色** - 点击"自定义颜色..."选择任意RGB颜色
+
+### CLI模式使用
+
+将图片放入 `input` 文件夹，运行：
+```bash
+python image_translator_optimized.py
+```
+
+翻译后的图片会保存在 `output` 文件夹中。
+
+## ⚙️ 配置文件
+
+`config.json` 包含所有配置选项：
+
+```json
+{
+    "ocr_languages": ["ch_sim", "en"],
+    "model_storage_directory": "model",
+    "ocr_width_threshold": 0.8,
+    "ocr_confidence_threshold": 0.4,
+    "ocr_decoder": "wordbeamsearch",
+    "source_language": "en",
+    "target_language": "zh-CN",
+    "input_folder": "input",
+    "output_folder": "output",
+    "background_margin": 10,
+    "color_discoloration_strength": 40,
+    "max_font_size": 500,
+    "font_path": "C:/Windows/Fonts/msyh.ttc",
+    "max_workers": 4
+}
+```
+
+### 主要配置项说明
+
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| `source_language` | 源语言代码 | `en` (英文) |
+| `target_language` | 目标语言代码 | `zh-CN` (简体中文) |
+| `ocr_confidence_threshold` | OCR置信度阈值 | `0.4` |
+| `max_font_size` | 最大字体大小 | `500` |
+| `font_path` | 字体文件路径 | `C:/Windows/Fonts/msyh.ttc` |
+| `max_workers` | 并发处理数 | `4` |
+
+### 支持的语言代码
+
+| 语言 | 代码 |
+|------|------|
+| 英文 | `en` |
+| 简体中文 | `zh-CN` |
+| 繁体中文 | `zh-TW` |
+| 日文 | `ja` |
+| 韩文 | `ko` |
+| 法文 | `fr` |
+| 德文 | `de` |
+| 西班牙文 | `es` |
+| 俄文 | `ru` |
+
+## 🛠️ 技术栈
+
+- **Python 3.8+**
+- **OCR引擎** - EasyOCR
+- **翻译服务** - Google Translator (deep-translator)
+- **图像处理** - Pillow (PIL)
+- **GUI框架** - Tkinter
+
+## 📁 项目结构
+
+```
+pic/
+├── image_translator_gui.py          # 图形界面程序
+├── image_translator_optimized.py    # 核心引擎（CLI模式）
+├── config.json                       # 配置文件
+├── requirements.txt                  # 依赖列表
+├── README.md                         # 说明文档
+├── input/                            # 输入图片文件夹
+├── output/                           # 输出图片文件夹
+└── model/                            # OCR模型文件夹（自动下载）
+```
+
+## 💡 使用技巧
+
+### 提高识别准确度
+- 上传清晰的图片
+- 调整 OCR 置信度阈值（`ocr_confidence_threshold`）
+- 使用手动框选补充遗漏的文字
+
+### 提高翻译质量
+- 确保网络连接正常（使用在线翻译服务）
+- 翻译后可手动编辑译文
+- 对于专业术语，建议手动修正
+
+### 优化显示效果
+- 根据图片背景选择合适的文字颜色
+- 对于小文本框，使用"自动"字体大小
+- 对于标题，可手动设置大字体（如 48-128 号）
+- 使用"黑体"字体显示更粗壮醒目
+
+### 批量处理
+- 使用 CLI 模式批量处理多张图片
+- 调整 `max_workers` 参数控制并发数
+- 网络不稳定时建议降低并发数
+
+## 🐛 常见问题
+
+### Q: 提示 "ConnectionResetError" 怎么办？
+**A:** 这是网络连接问题。解决方法：
+1. 检查网络连接
+2. 降低并发数（修改 `max_workers` 为 1）
+3. 重新运行程序
+
+### Q: 翻译结果显示为方框（□□□）？
+**A:** 字体不支持中文。解决方法：
+1. 确保 `font_path` 指向正确的中文字体
+2. 使用微软雅黑：`C:/Windows/Fonts/msyh.ttc`
+3. 或在 GUI 中选择其他中文字体
+
+### Q: OCR 识别不准确怎么办？
+**A:** 可以尝试：
+1. 调高 OCR 置信度阈值（但可能漏掉部分文字）
+2. 使用手动框选模式补充识别
+3. 确保图片清晰，文字对比度高
+
+### Q: 如何只翻译部分文字？
+**A:** 两种方法：
+1. 识别后，在列表中取消不需要翻译的文本框（点击☑变为☐）
+2. 跳过自动识别，直接使用手动框选模式，只框选需要翻译的区域
+
+### Q: 首次运行很慢？
+**A:** 首次运行需要下载 OCR 模型（约 200-300MB），这是正常现象。后续运行会快很多。
+
+## 📝 更新日志
+
+### v1.0.0 (2026-02-02)
+- ✨ 初始版本发布
+- ✅ 支持自动 OCR 识别
+- ✅ 支持手动框选文字
+- ✅ 多语言翻译
+- ✅ 交互式文本框选择
+- ✅ 样式自定义（字体大小、类型、颜色）
+- ✅ GUI 和 CLI 两种模式
+- ✅ 图片与列表双向联动

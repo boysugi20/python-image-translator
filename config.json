@@ -1,0 +1,19 @@
+{
+    "ocr_languages": [
+        "ch_sim",
+        "en"
+    ],
+    "model_storage_directory": "model",
+    "ocr_width_threshold": 0.8,
+    "ocr_confidence_threshold": 0.4,
+    "ocr_decoder": "wordbeamsearch",
+    "source_language": "en",
+    "target_language": "zh-CN",
+    "input_folder": "input",
+    "output_folder": "output",
+    "background_margin": 10,
+    "color_discoloration_strength": 40,
+    "max_font_size": 500,
+    "font_path": "C:/Windows/Fonts/msyh.ttc",
+    "max_workers": 4
+}
